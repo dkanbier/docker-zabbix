@@ -24,6 +24,15 @@ RUN yum -y -q install httpd php php-mysql php-snmp
 RUN yum -y -q install passwd  perl-JSON python-simplevisor pwgen vim
 # Install packages.
 RUN yum -y -q install java-1.7.0-openjdk
+# This is needed to keep the create/*.sql files
+RUN mv /etc/rpm/macros.imgcreate /tmp/
+# Install zabbix server and php frontend
+RUN yum -y -q install zabbix-server zabbix-server-mysql
+# Revert the previous workaround
+RUN mv /tmp/macros.imgcreate /etc/rpm/
+# Install the rest of the zabbix packages
+RUN yum -y -q install zabbix-agent zabbix-get zabbix-java-gateway zabbix-sender zabbix-web zabbix-web-mysql
+
 # Install zabbix server and php frontend
 RUN yum -y -q install zabbix-agent zabbix-get zabbix-java-gateway zabbix-sender zabbix-server zabbix-server-mysql zabbix-web zabbix-web-mysql
 # Cleaining up.
