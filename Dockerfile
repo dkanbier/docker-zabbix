@@ -1,5 +1,5 @@
 FROM centos
-MAINTAINER Bernardo Gomez Palacio <bernardo.gomezpalacio@gmail.com>
+MAINTAINER Dennis Kanbier <dennis@kanbier.net>
 
 # Update base images.
 RUN yum distribution-synchronization -y
